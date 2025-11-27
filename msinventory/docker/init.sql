@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS inventory (
+    id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
