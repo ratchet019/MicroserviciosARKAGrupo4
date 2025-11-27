@@ -1,0 +1,14 @@
+com\arka\orderservice\model\Order.class
+com\arka\orderservice\config\WebClientConfig.class
+com\arka\orderservice\model\OrderDetail$OrderDetailBuilder.class
+com\arka\orderservice\model\OrderDetail.class
+com\arka\orderservice\dto\OrderItemDto.class
+com\arka\orderservice\dto\OrderRequest.class
+com\arka\orderservice\mapper\OrderMapper.class
+com\arka\orderservice\service\OrderService.class
+com\arka\orderservice\repository\OrderDetailRepository.class
+com\arka\orderservice\repository\OrderRepository.class
+com\arka\orderservice\model\Order$OrderBuilder.class
+com\arka\orderservice\OrderServiceReactiveApplication.class
+com\arka\orderservice\controller\OrderController.class
+com\arka\orderservice\dto\OrderResponse.class

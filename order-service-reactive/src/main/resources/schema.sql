@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGSERIAL PRIMARY KEY,
+  order_date TIMESTAMP,
+  customer_name VARCHAR(150) NOT NULL,
+  status VARCHAR(20) DEFAULT 'PENDING',
+  total_amount NUMERIC(10,2) DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS order_detail (
+  id BIGSERIAL PRIMARY KEY,
+  order_id BIGINT REFERENCES orders(id) ON DELETE CASCADE,
+  product_id BIGINT NOT NULL,
+  quantity INT NOT NULL,
+  unit_price NUMERIC(10,2) NOT NULL
+);

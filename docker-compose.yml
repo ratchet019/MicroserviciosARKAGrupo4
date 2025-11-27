@@ -1,0 +1,59 @@
+version: '3.3'
+services:
+  mssales:
+    container_name: mssales
+    build:
+      context: ./mssales
+      dockerfile: Dockerfile
+    image: arka/mssales:latest
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_APPLICATION_NAME: sales-service
+      SPRING_R2DBC_URL: ${SPRING_R2DBC_URL}
+      SPRING_R2DBC_USERNAME: ${SPRING_R2DBC_USERNAME}
+      SPRING_R2DBC_PASSWORD: ${SPRING_R2DBC_PASSWORD}
+      INVENTORY_URL: http://msinventory:8081
+      MOVEMENT_URL: http://msmovement:8084
+    depends_on:
+      - msmovement
+      - msinventory
+    networks:
+      - ecommerce-net
+
+  msmovement:
+    container_name: msmovement
+    build:
+      context: ./msmovement
+      dockerfile: Dockerfile
+    image: arka/msmovement:latest
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_APPLICATION_NAME: movement-service
+      SPRING_R2DBC_URL: ${SPRING_R2DBC_URL}
+      SPRING_R2DBC_USERNAME: ${SPRING_R2DBC_USERNAME}
+      SPRING_R2DBC_PASSWORD: ${SPRING_R2DBC_PASSWORD}
+      INVENTORY_URL: http://msinventory:8081
+    networks:
+      - ecommerce-net
+
+  msinventory:
+    container_name: msinventory
+    build:
+      context: ./msinventory
+      dockerfile: Dockerfile
+    image: arka/msinventory:latest
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_APPLICATION_NAME: inventory-service
+      SPRING_R2DBC_URL: ${SPRING_R2DBC_URL}
+      SPRING_R2DBC_USERNAME: ${SPRING_R2DBC_USERNAME}
+      SPRING_R2DBC_PASSWORD: ${SPRING_R2DBC_PASSWORD}
+    networks:
+      - ecommerce-net
+
+networks:
+  ecommerce-net:
+    driver: bridge

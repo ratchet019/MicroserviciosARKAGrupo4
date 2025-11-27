@@ -1,0 +1,23 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: order-service
+
+
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+
+
+  sql:
+    init:
+      platform: postgres
+      mode: always
+      schema-locations: classpath:schema.sql
+  main:
+    web-application-type: reactive
+
